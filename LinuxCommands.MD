@@ -1,6 +1,7 @@
 # Linux Basic Commands
 
 whoami - Prints present user
+
 pwd - present working directory
 
 #Creating files
