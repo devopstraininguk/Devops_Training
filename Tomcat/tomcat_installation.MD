@@ -1,27 +1,26 @@
 # Tomcat installation on EC2 instance
 
-### Follow this article in **[YouTube](https://www.youtube.com/watch?v=m21nFreFw8A)**
+
 ### Prerequisites
-1. EC2 instance with Java v1.8.x 
+1. EC2 instance with Java v1.8.x
 
 ### Install Apache Tomcat
 Download tomcat packages from  https://tomcat.apache.org/download-80.cgi onto /opt on EC2 instance
 ```sh 
   # create tomcat directory
   cd /opt
-  wget http://mirrors.fibergrid.in/apache/tomcat/tomcat-8/v8.5.35/bin/apache-tomcat-8.5.35.tar.gz
-  tar -xvzf /opt/apache-tomcat-8.5.35.tar.gz
+  wget http://mirrors.ukfast.co.uk/sites/ftp.apache.org/tomcat/tomcat-8/v8.5.50/bin/apache-tomcat-8.5.50.zip
+  unzip /opt/apache-tomcat-8.5.50.zip
 ```
 give executing permissions to startup.sh and shutdown.sh which are under bin. 
 ```sh
-   chmod +x /opt/apache-tomcat-8.5.35/bin/startup.sh shutdown.sh
+   chmod +x /opt/apache-tomcat-8.5.35/bin/*.sh
 ```
 
-create link files for tomcat startup.sh and shutdown.sh 
+starting and stopping tomcat server 
 ```sh
-  ln -s /opt/apache-tomcat-8.5.35/bin/startup.sh /usr/local/bin/tomcatup
-  ln -s /opt/apache-tomcat-8.5.35/bin/shutdown.sh /usr/local/bin/tomcatdown
-  tomcatup
+  ./startup.sh - starts tomcat server
+  ./shutdown.sh - stops tomcat server
 ```
 #### check point :
 access tomcat application from browser on prot 8080  
@@ -32,8 +31,9 @@ Using unique ports for each application is a best practice in an environment. Bu
 cd /opt/apache-tomcat-8.5.35/conf
 # update port number in the "connecter port" field in server.xml
 # restart tomcat after configuration update
-tomcatdown
-tomcatup
+# go the bin directory
+./shutdown.sh
+./startup.sh
 ```
 #### check point :
 access tomcat application from browser on prot 8090  
@@ -47,8 +47,8 @@ find / -name context.xml
 above command gives 3 context.xml files. comment (<!-- & -->) `Value ClassName` field on files which are under webapp directory. 
 After that restart tomcat services to effect these changes
 ```sh 
-tomcatdown
-tomcatup
+./shutdown.sh
+./startup.sh
 ```
 Update users information in the tomcat-users.xml file
 goto tomcat home directory and Add below users to conf/tomcat-user.xml file
