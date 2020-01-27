@@ -8,7 +8,7 @@ pwd - present working directory
   touch - creates file
   cat - to view the file contents
   vi - to edit the file
-  
+ 
 #Copy a file
   cp sourcefile destination
 #Rename a file
