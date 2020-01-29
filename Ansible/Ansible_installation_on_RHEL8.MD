@@ -1,5 +1,8 @@
 # Ansible Installation on RHEL 8.x server
 
+#Prerequisites
+   Deploy 2 EC2 instances
+
 1. Install Python latest version  (on Control node and Managed host)
    ```sh 
    yum install python3 -y
@@ -35,7 +38,9 @@
     sudo service sshd reload
    ``` 
 
-    #### Install Ansible as a ansadmin user (on Control node)
+#Repeat the same steps in 2 servers which you have deployed
+
+    #### Install Ansible as a ansadmin user (on Control node/Master server)
    ```sh 
    su - ansadmin
    pip3 install ansible --user
@@ -57,8 +62,13 @@
 ### Validation test
 
 1. Create a directory /etc/ansible and create an inventory file called "hosts" add control node IP address in it. 
-   
+    ```sh 
+   sudo mkdir /etc/
+   vi hosts
+   ```
 1. Run ansible command as ansadmin user it should be successful (Master)
    ```sh 
+   sudo mkdir /etc/
+   vi
    ansible all -m ping
    ```
